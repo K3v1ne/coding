@@ -1,15 +1,15 @@
+#Import thư viện
 import numpy as np
 from sklearn.linear_model import LinearRegression
-import matplotlib.pyplot as plt
 
-raw = np.loadtxt('multivariate.txt', delimiter = ',')
-X = raw[:,0:2]
-y = raw[:,2]
+#load dataset
+raw = np.loadtxt('price.txt', delimiter = ',')
+X = raw[:,0:2] #Chia features trong biến X
+y = raw[:,2] #Output ở biến y
 
-reg = LinearRegression()
+reg = LinearRegression()# gọi functions
 reg.fit(X, y)
 
-X_test = np.array([[1203,3]])
-
-predict = reg.predict(X_test)
-print("$" + str(int(predict)))
+predict = reg.predict(X)
+print("Output thật", y)
+print("Output đoán", predict.astype(int))
