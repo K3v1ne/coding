@@ -29,8 +29,6 @@ def index():
         return resp
 
     actual_hash = hash(data + users[payload['username']])
-    print("actual_hash:", hash(data + users[payload['username']]))
-    print(users[payload['username']])
     if data_hash != actual_hash:
         return redirect('/login')
 
@@ -61,9 +59,6 @@ def post_login():
 
     b64data = b64encode(json.dumps(data).encode())
     data_hash = hash(b64data.decode() + users[username])
-    print("datahash:", data_hash)
-    print(users[username])
-    print(b64data)
     resp.set_cookie('data', b64data)
     resp.set_cookie('hash', data_hash)
     return resp
